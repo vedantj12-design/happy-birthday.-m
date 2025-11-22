@@ -1,0 +1,245 @@
+/* ================================
+   IMPORT FONTS
+=================================*/
+@import url('https://fonts.googleapis.com/css2?family=Coiny&family=Titan+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&family=Sriracha&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+/* ================================
+   RESET & ROOT VARIABLES
+=================================*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --color-pink: #feecea;
+    --color-white: #fff;
+    --color-black: #333;
+    --color-text-pink: #FF7882;
+    --color-heart: #FF7882;
+    --color-bg-letter: #fff8e4;
+    --color-border: #DACCBF;
+}
+
+/* ================================
+   BODY & WRAPPER
+=================================*/
+html, body {
+    height: 100%;
+}
+
+body{
+    background: linear-gradient(var(--color-pink), var(--color-pink));
+    font-size: 16px;
+}
+
+#wrapper{
+    height: 100%;
+    background-color: transparent;
+    background-image:
+        linear-gradient(0deg, transparent 24%, #fff 25%, #fff 26%, transparent 27%, transparent 74%, #fff 75%, #fff 76%, transparent 77%),
+        linear-gradient(90deg, transparent 24%, #fff 25%, #fff 26%, transparent 27%, transparent 74%, #fff 75%, #fff 76%, transparent 77%);
+    background-size: 80px 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ================================
+   FLAG ANIMATION
+=================================*/
+.flag__birthday{
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-200px);
+    animation: flagEntrance 1.5s 2s forwards;
+}
+
+.flag__birthday .flag__left{
+    transform: rotate(-10deg) translate(-20px,30px);
+}
+
+.flag__birthday .flag__right{
+    transform: rotate(10deg) translate(20px,30px) scaleX(-1);
+}
+
+@keyframes flagEntrance{
+    to{ transform: translateY(-10px); }
+}
+
+/* ================================
+   CONTENT LAYOUT
+=================================*/
+.content{
+    width: 100%;
+    display: flex;
+    padding-top: 3rem;
+}
+
+.content .left, 
+.content .right{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ================================
+   BUTTON
+=================================*/
+#btn__letter{
+    margin-top: 30px;
+    background: var(--color-text-pink);
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: 3px solid var(--color-black);
+    font-family: "Sriracha", cursive;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#btn__letter:hover{
+    background: var(--color-heart);
+    border-color: var(--color-heart);
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.28) 0px 3px 8px;
+}
+
+#btn__letter:hover i{
+    animation: heartRotate 1s infinite linear;
+}
+
+@keyframes heartRotate{
+    25%{ transform: rotate(12deg); }
+    75%{ transform: rotate(-12deg); }
+}
+
+/* ================================
+   TITLE TEXT
+=================================*/
+.title{
+    font-family: "Titan One";
+    text-align: center;
+    font-size: 3rem;
+}
+
+.title .happy,
+.title .birthday{
+    text-shadow: 4px 4px var(--color-black),
+                 -4px 4px var(--color-black),
+                 4px -4px var(--color-black),
+                 -4px -4px var(--color-black),
+                 4px 8px 0 var(--color-black);
+}
+
+.title .happy span,
+.title .birthday span{
+    opacity: 0;
+    transform: translateY(40px);
+    animation: textLift 0.6s var(--t) forwards;
+}
+
+@keyframes textLift{
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================
+   PROFILE IMAGE CIRCLE
+=================================*/
+.image{
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6px solid var(--color-black);
+}
+
+/* ================================
+   FLOATING CIRCLE ANIMATION
+=================================*/
+.cricle{
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    transform: scale(0);
+    animation: scalePop 3s 15s forwards;
+}
+
+.text__cricle{
+    width: 100px;
+    height: 100px;
+    background: var(--color-text-pink);
+    border-radius: 50%;
+    border: 5px solid var(--color-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: rotateCircle 5s linear infinite;
+}
+
+@keyframes rotateCircle{ to{ transform: rotate(360deg); } }
+
+@keyframes scalePop{
+    10%{ transform: scale(1.3); }
+    20%{ transform: scale(0.7); }
+    to{ transform: scale(1); }
+}
+
+/* ================================
+   LETTER POPUP
+=================================*/
+.box__letter{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    z-index: 10;
+}
+
+.letter__border{
+    width: 55vw;
+    height: 450px;
+    background: var(--color-white);
+    padding: 17px;
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ================================
+   MOBILE RESPONSIVE
+=================================*/
+@media(max-width: 650px){
+
+    .content{
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .image{
+        width: 200px;
+        height: 200px;
+    }
+
+    #btn__letter{
+        width: 200px;
+        font-size: 1rem;
+    }
+
+    .title{
+        font-size: 1.6rem;
+    }
+
+    .letter__border{
+        width: 90vw;
+        height: 320px;
+    }
+
+}
